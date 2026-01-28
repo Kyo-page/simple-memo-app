@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Memo } from "./types";
 import { Layout } from "./components/Layout";
 import { Editor } from "./components/Editor";
+import { MemoList } from "./components/MemoList";
 
 // 初期表示用のデータ（コンポーネントの外に置くことで再レンダリング時の再定義を防ぐ）
 const initialMemo = {
@@ -38,12 +39,7 @@ export function App() {
     return (
         <Layout>
             <Editor placeholder="新しいメモを入力..." type="shadow" onSubmit={addMemo} />
-            {memos.map((memo) => (
-                <p key={memo.id}>
-                    {memo.text}
-                    {memo.timestamp}
-                </p>
-            ))}
+            <MemoList memos={memos} setMemos={setMemos} />
         </Layout>
     );
 }

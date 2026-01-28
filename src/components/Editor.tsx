@@ -18,7 +18,7 @@ type EditorProps = {
 
 // 入力欄のコンポーネント
 export const Editor = (props: EditorProps) => {
-    // propsの初期値をそれぞれ代入
+    // 受け取ったpropsを展開して、それぞれ代入。onSubmitは関数なので、代入するのではなく、そのまま使う。
     const { initialValue = "", placeholder = "", type = "border", onSubmit } = props;
     // 入力欄のテキストを管理するためのuseState
     // initialValueを初期値とする

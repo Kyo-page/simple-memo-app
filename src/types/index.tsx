@@ -5,5 +5,6 @@ export interface Memo {
 }
 
 export interface Reply extends Memo {
+    // 返信先のメモのid
     parentId: number;
 }
