@@ -26,14 +26,14 @@ export const ContentBody = (props: ContentBodyProps) => {
 
                 <div className="flex space-x-2">
                     <button
-                    // ボタンをクリックすると、startEdit関数を実行。引数にcontent.idとtypeを渡す
+                        // ボタンをクリックすると、startEdit関数を実行。引数にcontent.idとtypeを渡す
                         onClick={() => props.startEdit(props.content.id, props.type)}
                         className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
                     >
                         <Edit2 className="w-4 h-4" />
                     </button>
                     <button
-                    // ボタンをクリックすると、onDelete関数を実行。引数にcontent.idを渡す
+                        // ボタンをクリックすると、onDelete関数を実行。引数にcontent.idを渡す
                         onClick={() => props.onDelete(props.content.id)}
                         className="p-1.5 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                     >
@@ -42,7 +42,7 @@ export const ContentBody = (props: ContentBodyProps) => {
                 </div>
             </div>
             {/* つまりmemo.text */}
-            <CardTitle>{props.content.text}</CardTitle>
+            <CardTitle className="pb-3">{props.content.text}</CardTitle>
         </>
     );
 };
