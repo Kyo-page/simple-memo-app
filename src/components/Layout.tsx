@@ -9,9 +9,9 @@ export const Layout = (props: LayoutProps) => {
         <>
             <div className="px-8 py-12 bg-neutral-100">
                 <h1 className="text-3xl font-bold mb-8">Simple Memo App</h1>
-                <div className="grid grid-cols-3 gap-8 flex-1">
-                    <main className="col-span-2 space-y-6">{props.children}</main>
-                    <aside>
+                <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+                    <main className="space-y-6 lg:col-span-2">{props.children}</main>
+                    <aside className="order-first lg:order-last">
                         <Card>
                             <iframe
                                 id="pomofocus"

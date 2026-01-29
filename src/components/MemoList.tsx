@@ -1,8 +1,10 @@
 import type { Memo, Reply } from "../types";
 import { useState } from "react";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./ui/card";
+import { Card, CardHeader, CardContent, CardFooter } from "./ui/card";
 import { MessageCircle } from "lucide-react";
 import { Editor } from "./Editor";
+import { ContentBody } from "./ContentBody";
+import { ReplyList } from "./ReplyList";
 
 type MemoListProps = {
     // memos(メモのリスト)を表示するために、Memo型の配列を受け取る
@@ -24,7 +26,7 @@ export const MemoList = (props: MemoListProps) => {
     const [editingTo, setEditingTo] = useState<{
         // 編集先のメモのid
         id: number;
-        // 編集先のメモの種類。メモかリプライか。UIを分けるために必要。
+        // 編集先のメモの種類。メモかリプライか。
         type: "memo" | "reply";
     } | null>(null);
 
@@ -106,16 +108,23 @@ export const MemoList = (props: MemoListProps) => {
                     ) : (
                         <>
                             <CardHeader>
-                                <CardDescription>{memo.timestamp}</CardDescription>
-                                <CardTitle>{memo.text}</CardTitle>
+                                {/* ContentBodyコンポーネントを表示。typeにメモの種類を渡し、contentにオブジェクト{memo}を渡し、onDeleteにメモを削除する関数を渡し、startEditにメモを編集する関数を渡す */}
+                                <ContentBody type="memo" content={memo} onDelete={deleteMemo} startEdit={startEdit} />
                                 <hr className="border-gray-300" />
                             </CardHeader>
-                            <CardContent>
-                                {/* メモに対する返信のリストを配列として取得する関数を実行。引数にメモのidを渡す */}
-                                {/* その配列をmapで走査して、返信のidとテキストを表示 */}
-                                {getRepliesForMemo(memo.id).map((reply) => (
-                                    <p key={reply.id}>{reply.text}</p>
-                                ))}
+                            <CardContent className="space-y-4">
+                                {/* ReplyListコンポーネントを表示。repliesにメモに対する返信のリストを渡し、
+                                setRepliesに返信のリストを更新する関数を渡し、
+                                startEditに編集を開始する関数を渡し、
+                                editingToに編集先のidと種類を渡し、
+                                setEditingToに編集先のidと種類を設定する関数を渡す。*/}
+                                <ReplyList
+                                    replies={getRepliesForMemo(memo.id)}
+                                    setReplies={setReplies}
+                                    startEdit={startEdit}
+                                    editingTo={editingTo}
+                                    setEditingTo={setEditingTo}
+                                />
 
                                 {/* 返信先のidとメモのidが一致する(返信モードがon)場合は、Editorを表示 */}
                                 {replyingTo === memo.id && (
