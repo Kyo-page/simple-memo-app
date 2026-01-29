@@ -19,5 +19,15 @@ export default defineConfig([
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+    rules: {
+      'import/no-unresolved': [
+        'error',
+        {
+          ignore: [
+            '@/lib/utils',
+          ],
+        },
+      ],
+    },
   },
 ])
