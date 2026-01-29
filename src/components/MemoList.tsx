@@ -100,7 +100,7 @@ export const MemoList = (props: MemoListProps) => {
             {/* メモのidとテキストと時刻を受け取る */}
             {memos.map((memo) => (
                 // listにはkeyを渡す必要があるので、メモのidをkeyに渡す
-                <Card key={memo.id}>
+                <Card key={memo.id} className="gap-0">
                     {/* 編集中のidとメモのidが一致し、編集中の種類がメモの場合は、カードの中身をEditorのみにする */}
                     {editingTo?.id === memo.id && editingTo?.type === "memo" ? (
                         // EditorのinitialValueにメモのテキストを渡し、updateMemoをonSubmitに渡す
@@ -112,7 +112,7 @@ export const MemoList = (props: MemoListProps) => {
                                 <ContentBody type="memo" content={memo} onDelete={deleteMemo} startEdit={startEdit} />
                                 <hr className="border-gray-300" />
                             </CardHeader>
-                            <CardContent className="space-y-4">
+                            <CardContent className="pt-4">
                                 {/* ReplyListコンポーネントを表示。repliesにメモに対する返信のリストを渡し、
                                 setRepliesに返信のリストを更新する関数を渡し、
                                 startEditに編集を開始する関数を渡し、

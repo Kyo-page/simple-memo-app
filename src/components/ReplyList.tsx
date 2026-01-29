@@ -51,7 +51,7 @@ export const ReplyList = (props: ReplyListProps) => {
             {/* 返信のリストをmapで走査して、返信を表示 */}
             {replies.map((reply) => (
                 // listにはkeyを渡す必要があるので、返信のidをkeyに渡す
-                <div key={reply.id} className="p-6 bg-gray-100 rounded-lg space-y-2">
+                <div key={reply.id} className="p-6 bg-gray-100 rounded-lg space-y-2 mb-4">
                     {/* 編集中のidと返信のidが一致し、編集中の種類がreplyの場合は、カードの中身をEditorのみにする */}
                     {editingTo?.id === reply.id && editingTo?.type === "reply" ? (
                         // EditorのinitialValueにreplyのテキストを渡し、onSubmitにupdateReplyを渡す
